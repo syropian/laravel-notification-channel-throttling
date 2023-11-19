@@ -1,10 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Syropian\LaravelNotificationChannelThrottling\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Syropian\LaravelNotificationChannelThrottling\LaravelNotificationChannelThrottlingServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -12,15 +14,19 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
+        config()->set('mail.driver', 'log');
+
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            function (string $modelName) {
+                return 'Syropian\\LaravelNotificationChannelThrottling\\Tests\\Support\\Factories\\' . class_basename($modelName) . 'Factory';
+            }
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            LaravelNotificationChannelThrottlingServiceProvider::class,
         ];
     }
 
@@ -28,9 +34,20 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('email');
+            $table->string('password');
+            $table->timestamps();
+        });
+
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
+            $table->timestamps();
+        });
     }
 }
