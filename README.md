@@ -21,16 +21,23 @@ composer require syropian/laravel-notification-channel-throttling
 2. Implement the `throttleChannels` method. This method should return an array of channels to throttle, and the configuration for each channel. To omit a channel from throttling either omit the channel from the array, or set the value to `false`.
 
 ```php
-public function throttleChannels(object $notifiable, array $channels): array
-{
-    return [
-        'mail' => [
-            'key' => $notifiable->id,
-            'maxAttempts' => 1,
-            'decaySeconds' => 900, // 15 minutes
-        ],
-        'database' => false,
-    ];
+use Illuminate\Notifications\Notification;
+use Syropian\LaravelNotificationChannelThrottling\Contracts\ThrottlesChannels;
+
+class ExampleNotification extends Notification implements ThrottlesChannels {
+    // ...
+
+    public function throttleChannels(object $notifiable, array $channels): array
+    {
+        return [
+            'mail' => [
+                'key' => $notifiable->id,
+                'maxAttempts' => 1,
+                'decaySeconds' => 900, // 15 minutes
+            ],
+            'database' => false,
+        ];
+    }
 }
 ```
 
