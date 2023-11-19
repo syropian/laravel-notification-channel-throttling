@@ -1,6 +1,6 @@
 {
     "name": "syropian/laravel-notification-channel-throttling",
-    "description": "Throttle notifications on aa per-channel basis",
+    "description": "Throttle notifications on a per-channel basis",
     "keywords": [
         "syropian",
         "laravel",
