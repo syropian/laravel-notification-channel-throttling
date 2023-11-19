@@ -34,6 +34,9 @@ public function throttleChannels(object $notifiable, array $channels): array
 }
 ```
 
+> [!NOTE]
+> The `key` property is optional, and allows you to scope your channel throttles however you wish.
+
 3. That's it!
 
 ## Testing
