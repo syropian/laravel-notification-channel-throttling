@@ -2,10 +2,10 @@
 
 namespace Syropian\LaravelNotificationChannelThrottling\Tests;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase as Orchestra;
 use Syropian\LaravelNotificationChannelThrottling\LaravelNotificationChannelThrottlingServiceProvider;
 
 class TestCase extends Orchestra
@@ -18,7 +18,7 @@ class TestCase extends Orchestra
 
         Factory::guessFactoryNamesUsing(
             function (string $modelName) {
-                return 'Syropian\\LaravelNotificationChannelThrottling\\Tests\\Support\\Factories\\' . class_basename($modelName) . 'Factory';
+                return 'Syropian\\LaravelNotificationChannelThrottling\\Tests\\Support\\Factories\\'.class_basename($modelName).'Factory';
             }
         );
     }

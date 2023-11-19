@@ -2,7 +2,6 @@
 
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Event;
 use Syropian\LaravelNotificationChannelThrottling\Tests\Support\Models\User;
 use Syropian\LaravelNotificationChannelThrottling\Tests\Support\Notifications\TestNotification;
