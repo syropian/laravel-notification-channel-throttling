@@ -11,6 +11,7 @@ class HitRateLimiter
     public function handle(NotificationSent $event)
     {
         if ($event->notification instanceof ThrottlesChannels) {
+            // @phpstan-ignore-next-line
             $channels = $event->notification->via($event->notifiable);
             $throttleConfig = $event->notification->throttleChannels($event->notifiable, $channels);
             $channelConfig = $throttleConfig[$event->channel];
