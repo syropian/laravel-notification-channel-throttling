@@ -1,9 +1,17 @@
-# Throttles notifications on a per-channel basis
+<div align="center">
+    <img src="/art/github_header.png" alt="Laravel Notification Channel Throttling">
+    <h1>🚦 Laravel Notification Channel Throttling</h1>
+    <p>Throttle your Laravel notifications on a per-channel basis</p>
+</div>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/syropian/laravel-notification-channel-throttling.svg?style=flat-square)](https://packagist.org/packages/syropian/laravel-notification-channel-throttling)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/syropian/laravel-notification-channel-throttling/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/syropian/laravel-notification-channel-throttling/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/syropian/laravel-notification-channel-throttling/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/syropian/laravel-notification-channel-throttling/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/syropian/laravel-notification-channel-throttling.svg?style=flat-square)](https://packagist.org/packages/syropian/laravel-notification-channel-throttling)
+<p align="center">
+    <a href="https://packagist.org/packages/syropian/laravel-notification-channel-throttling"><img src="https://img.shields.io/packagist/v/syropian/laravel-notification-channel-throttling.svg?style=flat-square" alt="Latest Version on Packagist"></a>
+    <a href="https://github.com/syropian/laravel-notification-channel-throttling/actions?query=workflow%3Arun-tests+branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/syropian/laravel-notification-channel-throttling/run-tests.yml?branch=main&label=tests&style=flat-square" alt="GitHub Tests Action Status"></a>
+    <a href="https://github.com/syropian/laravel-notification-channel-throttling/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/syropian/laravel-notification-channel-throttling/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square" alt="GitHub Code Style Action Status"></a>
+    <a href="https://packagist.org/packages/syropian/laravel-notification-channel-throttling"><img src="https://img.shields.io/packagist/dt/syropian/laravel-notification-channel-throttling.svg?style=flat-square" alt="Total Downloads"></a>
+</p>
+
+## Introduction
 
 When sending notifications through multiple channels (say email and SMS), you may want to throttle the number of notifications sent through a specific channel. For example, you could limit the number of SMS notifications sent to a user to 1 per day, and limit emails to 5 per day. This package allows you to configure this easily directly in your notification classes.
 
