@@ -37,11 +37,14 @@ class ExampleNotification extends Notification implements ThrottlesChannels {
 
     public function throttleChannels(object $notifiable, array $channels): array
     {
+        /**
+         * Throttle the mail channel, so that only one
+         * email notification is sent every 15 minutes
+         */
         return [
             'mail' => [
-                'key' => $notifiable->id,
                 'maxAttempts' => 1,
-                'decaySeconds' => 900, // 15 minutes
+                'decaySeconds' => 900,
             ],
             'database' => false,
         ];
@@ -49,10 +52,27 @@ class ExampleNotification extends Notification implements ThrottlesChannels {
 }
 ```
 
-> [!NOTE]
-> The `key` property is optional, and allows you to scope your channel throttles however you wish.
+## Scoping the rate limiter
 
-3. That's it!
+By default, the [rate limiter](https://laravel.com/docs/rate-limiting) instance used to throttle is automatically scoped to the notification and channel. If you would like to further scope the rate limiter, you may pass a `key` to the channel configuration.
+
+```php
+public function __construct(public Post $post) {}
+
+public function throttleChannels(object $notifiable, array $channels): array
+{
+    return [
+        'mail' => [
+            'key' => $notifiable->id . ':' . $this->post->id,
+            'maxAttempts' => 1,
+            'decaySeconds' => 900,
+        ],
+        'database' => false,
+    ];
+}
+```
+
+In this example we're rate limiting the mail channel, and we're scoping it to a specific combination of a user and a post.
 
 ## Testing
 
