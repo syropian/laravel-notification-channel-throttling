@@ -23,6 +23,12 @@ You can install the package via composer:
 composer require syropian/laravel-notification-channel-throttling
 ```
 
+## Compatibility
+
+This package supports Laravel 10, 11, 12, and 13.
+
+Laravel 13 requires PHP 8.3. The package still supports PHP 8.2 for Laravel 10, 11, and 12.
+
 ## Usage
 
 1. Ensure the notification you want to throttle implements `Syropian\LaravelNotificationChannelThrottling\Contracts\ThrottlesChannels`.
