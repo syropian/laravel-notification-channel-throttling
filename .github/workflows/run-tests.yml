@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
@@ -60,4 +60,14 @@ jobs:
         run: composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest --ci
+        run: vendor/bin/pest --ci --stderr --display-errors --display-warnings --display-deprecations --display-notices --display-skipped --display-incomplete
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-php${{ matrix.php }}-laravel${{ matrix.laravel }}
+          path: |
+            build/
+            storage/logs/
+          if-no-files-found: ignore
